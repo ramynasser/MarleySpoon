@@ -16,7 +16,8 @@
 		CF04040126E94E1C007CF378 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF3DF30D26E8E1D100F31504 /* Constants.swift */; };
 		CF04040226E94E1C007CF378 /* RecipeListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF3DF32426E8E26C00F31504 /* RecipeListViewModel.swift */; };
 		CF04041826E95302007CF378 /* RecipeServiceStub.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF04040526E94EB4007CF378 /* RecipeServiceStub.swift */; };
-		CF04041E26E95358007CF378 /* RecipeDetailViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF04041D26E95358007CF378 /* RecipeDetailViewModelTests.swift */; };
+		CF04042426E981F9007CF378 /* RecipeDetailViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF04042326E981F9007CF378 /* RecipeDetailViewModelTests.swift */; };
+		CF04042F26E98382007CF378 /* RecipeDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF3DF32A26E8E76D00F31504 /* RecipeDetailViewModel.swift */; };
 		CF3AE69D26E7F2860077253F /* MarleySpoonApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF3AE67426E7F2850077253F /* MarleySpoonApp.swift */; };
 		CF3AE69F26E7F2860077253F /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF3AE67526E7F2850077253F /* ContentView.swift */; };
 		CF3AE6A126E7F2860077253F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CF3AE67626E7F2860077253F /* Assets.xcassets */; };
@@ -58,7 +59,7 @@
 		BA7965B06BEFA36A1E9F5499 /* Pods-Tests iOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Tests iOS.debug.xcconfig"; path = "Target Support Files/Pods-Tests iOS/Pods-Tests iOS.debug.xcconfig"; sourceTree = "<group>"; };
 		BB7867913FD0E39645415929 /* Pods-MarleySpoonTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MarleySpoonTests.release.xcconfig"; path = "Target Support Files/Pods-MarleySpoonTests/Pods-MarleySpoonTests.release.xcconfig"; sourceTree = "<group>"; };
 		CF04040526E94EB4007CF378 /* RecipeServiceStub.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeServiceStub.swift; sourceTree = "<group>"; };
-		CF04041D26E95358007CF378 /* RecipeDetailViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeDetailViewModelTests.swift; sourceTree = "<group>"; };
+		CF04042326E981F9007CF378 /* RecipeDetailViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeDetailViewModelTests.swift; sourceTree = "<group>"; };
 		CF3AE67426E7F2850077253F /* MarleySpoonApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarleySpoonApp.swift; sourceTree = "<group>"; };
 		CF3AE67526E7F2850077253F /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		CF3AE67626E7F2860077253F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -178,7 +179,7 @@
 				CF04040526E94EB4007CF378 /* RecipeServiceStub.swift */,
 				CF3AE69126E7F2860077253F /* Info.plist */,
 				CF3DF33026E8F76F00F31504 /* RecipeViewModelTests.swift */,
-				CF04041D26E95358007CF378 /* RecipeDetailViewModelTests.swift */,
+				CF04042326E981F9007CF378 /* RecipeDetailViewModelTests.swift */,
 			);
 			path = MarleySpoonTests;
 			sourceTree = "<group>";
@@ -460,13 +461,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CF04042F26E98382007CF378 /* RecipeDetailViewModel.swift in Sources */,
 				CF0403FE26E94E1C007CF378 /* Recipe.swift in Sources */,
 				CF04041826E95302007CF378 /* RecipeServiceStub.swift in Sources */,
 				CF0403FF26E94E1C007CF378 /* Chef.swift in Sources */,
 				CF04040026E94E1C007CF378 /* Tag.swift in Sources */,
 				CF04040126E94E1C007CF378 /* Constants.swift in Sources */,
 				CF04040226E94E1C007CF378 /* RecipeListViewModel.swift in Sources */,
-				CF04041E26E95358007CF378 /* RecipeDetailViewModelTests.swift in Sources */,
+				CF04042426E981F9007CF378 /* RecipeDetailViewModelTests.swift in Sources */,
 				CF0403F326E94D6F007CF378 /* RecipeService.swift in Sources */,
 				CF3DF39B26E9028800F31504 /* RecipeViewModelTests.swift in Sources */,
 			);

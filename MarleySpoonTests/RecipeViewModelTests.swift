@@ -20,35 +20,21 @@ class RecipeViewModelTests: XCTestCase {
     }
 
     func test_fetchRecipes_success_response() {
-      let tag1 = Tag(name: "tag1")
-      let chef1 = Chef(name: "chef1")
-      let recipe1 = Recipe(title: "Awesome Recipe",
-                           description: "Awesome Recipe's Description",
-                           calories:789,
-                           chef: chef1,
-                           tags: [tag1])
+      let tag = Tag(name: "tag1")
+      let chef = Chef(name: "chef1")
+      let recipe = Recipe(title: "title",
+                           description: "description",
+                           calories:123,
+                           chef: chef,
+                           tags: [tag])
 
-      let tag2 = Tag(name: "fruit")
-      let chef2 = Chef(name: "Tim Apple")
-      let recipe2 = Recipe(title: "Mediocre Recipe",
-                           description: "Mediocre Recipe's Description",
-                           calories:666,
-                           chef: chef2,
-                           tags: [tag1, tag2])
-
-      let tag3 = Tag(name: "meat")
-      let chef3 = Chef(name: "The Mountain")
-      let recipe3 = Recipe(title: "Beefy Recipe",
-                           description: "Beefy Recipe's Description",
-                           calories:568,
-                           chef: chef3,
-                           tags: [tag1, tag3])
-
-      serviceStub = RecipeServiceStub(recipes: [recipe1,recipe2,recipe3])
+      serviceStub = RecipeServiceStub(recipes: [recipe,recipe,recipe])
       recipesViewModel = RecipeListViewModel(service: serviceStub)
       recipesViewModel.fetchRecipes()
       XCTAssertEqual(serviceStub.fetchRecipeCallCount, 1)
       XCTAssertEqual(serviceStub.stubbedRecipes.count, recipesViewModel.recipes.count)
+      XCTAssertEqual(recipesViewModel.recipes.count, 3)
+      XCTAssertEqual(recipesViewModel.error, "")
     }
 
 
@@ -59,5 +45,6 @@ class RecipeViewModelTests: XCTestCase {
       recipesViewModel.fetchRecipes()
       XCTAssertEqual(serviceStub.fetchRecipeCallCount, 1)
       XCTAssertEqual(expectedMessage, recipesViewModel.error)
+      XCTAssertEqual(recipesViewModel.recipes.count, 0)
     }
 }

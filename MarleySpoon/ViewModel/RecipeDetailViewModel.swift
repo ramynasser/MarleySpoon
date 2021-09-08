@@ -19,21 +19,24 @@ public class RecipeDetailViewModel: ObservableObject {
     
     guard let title = recipe.title,
       let description = recipe.description,
-      let calories = recipe.calories,
-      let photoUrl = recipe.photo?.urlString else {
+      let calories = recipe.calories else {
         return
     }
     
     self.title = title
     self.description = description
     self.calories = calories
-    self.photoUrl = photoUrl
     
     recipeTags = recipe.tags?.map({ (tag) -> String in
         tag.name ?? ""
     }) ?? []
 
     chefName = recipe.chef?.name ?? ""
+    
+    guard let photoUrl = recipe.photo?.urlString else {
+      return
+    }
+    self.photoUrl = photoUrl
   }
   
 }
