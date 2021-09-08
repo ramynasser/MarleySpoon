@@ -1,0 +1,702 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 51;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		5C78125CE0351ADD46A4967B /* Pods_MarleySpoonTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B9C0C794F603B80398A7762 /* Pods_MarleySpoonTests.framework */; };
+		BBCEF0E4B525E6086B2A772F /* Pods_MarleySpoon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 940ED1E890C756E313647E3B /* Pods_MarleySpoon.framework */; };
+		CF3AE69D26E7F2860077253F /* MarleySpoonApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF3AE67426E7F2850077253F /* MarleySpoonApp.swift */; };
+		CF3AE69F26E7F2860077253F /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF3AE67526E7F2850077253F /* ContentView.swift */; };
+		CF3AE6A126E7F2860077253F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CF3AE67626E7F2860077253F /* Assets.xcassets */; };
+		CF3AE72526E7F7A40077253F /* ImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF3AE72426E7F7A40077253F /* ImageView.swift */; };
+		CF3AE72C26E7F97A0077253F /* ImageLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF3AE72B26E7F97A0077253F /* ImageLoader.swift */; };
+		CF3AE74C26E800030077253F /* Recipe.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF3AE74B26E800030077253F /* Recipe.swift */; };
+		CF3AE78C26E8057B0077253F /* RecipeDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF3AE78B26E8057B0077253F /* RecipeDetailView.swift */; };
+		CF3AE79226E808910077253F /* CircleImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF3AE79126E808910077253F /* CircleImage.swift */; };
+		CF3AE79826E8089C0077253F /* RecipeRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF3AE79726E8089C0077253F /* RecipeRow.swift */; };
+		CF3AE79E26E809080077253F /* RecipeListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF3AE79D26E809080077253F /* RecipeListView.swift */; };
+		CF3DF2EA26E8D3B100F31504 /* Chef.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF3DF2E926E8D3B100F31504 /* Chef.swift */; };
+		CF3DF2F026E8D40800F31504 /* Tag.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF3DF2EF26E8D40800F31504 /* Tag.swift */; };
+		CF3DF2F626E8DDF000F31504 /* RecipeService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF3DF2F526E8DDF000F31504 /* RecipeService.swift */; };
+		CF3DF30E26E8E1D100F31504 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF3DF30D26E8E1D100F31504 /* Constants.swift */; };
+		CF3DF32526E8E26C00F31504 /* RecipeListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF3DF32426E8E26C00F31504 /* RecipeListViewModel.swift */; };
+		CF3DF32B26E8E76D00F31504 /* RecipeDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF3DF32A26E8E76D00F31504 /* RecipeDetailViewModel.swift */; };
+		CF3DF39B26E9028800F31504 /* RecipeViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF3DF33026E8F76F00F31504 /* RecipeViewModelTests.swift */; };
+		CF3DF3CB26E9092400F31504 /* MockedRecipeService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF3DF33626E8F7DB00F31504 /* MockedRecipeService.swift */; };
+		CF3DF3DE26E90B9D00F31504 /* Recipe.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF3AE74B26E800030077253F /* Recipe.swift */; };
+		CF3DF3DF26E90B9D00F31504 /* Chef.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF3DF2E926E8D3B100F31504 /* Chef.swift */; };
+		CF3DF3E026E90B9D00F31504 /* Tag.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF3DF2EF26E8D40800F31504 /* Tag.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		CF3AE68C26E7F2860077253F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = CF3AE66F26E7F2850077253F /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = CF3AE67A26E7F2860077253F;
+			remoteInfo = "MarleySpoon (iOS)";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		5B9C0C794F603B80398A7762 /* Pods_MarleySpoonTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MarleySpoonTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		7796AC3C45B6C99C5F159693 /* Pods-MarleySpoon (iOS).debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MarleySpoon (iOS).debug.xcconfig"; path = "Target Support Files/Pods-MarleySpoon (iOS)/Pods-MarleySpoon (iOS).debug.xcconfig"; sourceTree = "<group>"; };
+		7AEED8D50DBEA402A584B2F6 /* Pods-MarleySpoon.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MarleySpoon.debug.xcconfig"; path = "Target Support Files/Pods-MarleySpoon/Pods-MarleySpoon.debug.xcconfig"; sourceTree = "<group>"; };
+		83CAA5F47E6D8AA12F58E70F /* Pods-MarleySpoon (iOS).release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MarleySpoon (iOS).release.xcconfig"; path = "Target Support Files/Pods-MarleySpoon (iOS)/Pods-MarleySpoon (iOS).release.xcconfig"; sourceTree = "<group>"; };
+		940ED1E890C756E313647E3B /* Pods_MarleySpoon.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MarleySpoon.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		9C5E1763CCDBEDD4E05D000C /* Pods-Tests iOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Tests iOS.release.xcconfig"; path = "Target Support Files/Pods-Tests iOS/Pods-Tests iOS.release.xcconfig"; sourceTree = "<group>"; };
+		A4227D26FD91F5FCB8F2029B /* Pods-MarleySpoon.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MarleySpoon.release.xcconfig"; path = "Target Support Files/Pods-MarleySpoon/Pods-MarleySpoon.release.xcconfig"; sourceTree = "<group>"; };
+		AC8B96719720A40D610FF8AE /* Pods-MarleySpoonTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MarleySpoonTests.debug.xcconfig"; path = "Target Support Files/Pods-MarleySpoonTests/Pods-MarleySpoonTests.debug.xcconfig"; sourceTree = "<group>"; };
+		BA7965B06BEFA36A1E9F5499 /* Pods-Tests iOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Tests iOS.debug.xcconfig"; path = "Target Support Files/Pods-Tests iOS/Pods-Tests iOS.debug.xcconfig"; sourceTree = "<group>"; };
+		BB7867913FD0E39645415929 /* Pods-MarleySpoonTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MarleySpoonTests.release.xcconfig"; path = "Target Support Files/Pods-MarleySpoonTests/Pods-MarleySpoonTests.release.xcconfig"; sourceTree = "<group>"; };
+		CF3AE67426E7F2850077253F /* MarleySpoonApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarleySpoonApp.swift; sourceTree = "<group>"; };
+		CF3AE67526E7F2850077253F /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		CF3AE67626E7F2860077253F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		CF3AE67B26E7F2860077253F /* MarleySpoon.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MarleySpoon.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		CF3AE67E26E7F2860077253F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		CF3AE68B26E7F2860077253F /* MarleySpoonTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MarleySpoonTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		CF3AE69126E7F2860077253F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		CF3AE72426E7F7A40077253F /* ImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageView.swift; sourceTree = "<group>"; };
+		CF3AE72B26E7F97A0077253F /* ImageLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageLoader.swift; sourceTree = "<group>"; };
+		CF3AE74B26E800030077253F /* Recipe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Recipe.swift; sourceTree = "<group>"; };
+		CF3AE78B26E8057B0077253F /* RecipeDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeDetailView.swift; sourceTree = "<group>"; };
+		CF3AE79126E808910077253F /* CircleImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CircleImage.swift; sourceTree = "<group>"; };
+		CF3AE79726E8089C0077253F /* RecipeRow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecipeRow.swift; sourceTree = "<group>"; };
+		CF3AE79D26E809080077253F /* RecipeListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeListView.swift; sourceTree = "<group>"; };
+		CF3DF2E926E8D3B100F31504 /* Chef.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Chef.swift; sourceTree = "<group>"; };
+		CF3DF2EF26E8D40800F31504 /* Tag.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tag.swift; sourceTree = "<group>"; };
+		CF3DF2F526E8DDF000F31504 /* RecipeService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeService.swift; sourceTree = "<group>"; };
+		CF3DF30D26E8E1D100F31504 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		CF3DF32426E8E26C00F31504 /* RecipeListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeListViewModel.swift; sourceTree = "<group>"; };
+		CF3DF32A26E8E76D00F31504 /* RecipeDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeDetailViewModel.swift; sourceTree = "<group>"; };
+		CF3DF33026E8F76F00F31504 /* RecipeViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeViewModelTests.swift; sourceTree = "<group>"; };
+		CF3DF33626E8F7DB00F31504 /* MockedRecipeService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockedRecipeService.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		CF3AE67826E7F2860077253F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BBCEF0E4B525E6086B2A772F /* Pods_MarleySpoon.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CF3AE68826E7F2860077253F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5C78125CE0351ADD46A4967B /* Pods_MarleySpoonTests.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		216EB8BDD075E2738ED4CF41 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				940ED1E890C756E313647E3B /* Pods_MarleySpoon.framework */,
+				5B9C0C794F603B80398A7762 /* Pods_MarleySpoonTests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		C8F1C9A5B6E5D55E5808F396 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				7796AC3C45B6C99C5F159693 /* Pods-MarleySpoon (iOS).debug.xcconfig */,
+				83CAA5F47E6D8AA12F58E70F /* Pods-MarleySpoon (iOS).release.xcconfig */,
+				BA7965B06BEFA36A1E9F5499 /* Pods-Tests iOS.debug.xcconfig */,
+				9C5E1763CCDBEDD4E05D000C /* Pods-Tests iOS.release.xcconfig */,
+				7AEED8D50DBEA402A584B2F6 /* Pods-MarleySpoon.debug.xcconfig */,
+				A4227D26FD91F5FCB8F2029B /* Pods-MarleySpoon.release.xcconfig */,
+				AC8B96719720A40D610FF8AE /* Pods-MarleySpoonTests.debug.xcconfig */,
+				BB7867913FD0E39645415929 /* Pods-MarleySpoonTests.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		CF3AE66E26E7F2850077253F = {
+			isa = PBXGroup;
+			children = (
+				CF3AE67326E7F2850077253F /* MarleySpoon */,
+				CF3AE68E26E7F2860077253F /* MarleySpoonTests */,
+				CF3AE67C26E7F2860077253F /* Products */,
+				C8F1C9A5B6E5D55E5808F396 /* Pods */,
+				216EB8BDD075E2738ED4CF41 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		CF3AE67326E7F2850077253F /* MarleySpoon */ = {
+			isa = PBXGroup;
+			children = (
+				CF3AE67E26E7F2860077253F /* Info.plist */,
+				CF3AE72A26E7F96C0077253F /* Utilis */,
+				CF3AE74A26E7FFFB0077253F /* Model */,
+				CF3AE75526E800D10077253F /* Service */,
+				CF3DF31326E8E23C00F31504 /* ViewModel */,
+				CF3AE71D26E7F6760077253F /* view */,
+				CF3AE67426E7F2850077253F /* MarleySpoonApp.swift */,
+				CF3AE67526E7F2850077253F /* ContentView.swift */,
+				CF3AE67626E7F2860077253F /* Assets.xcassets */,
+			);
+			path = MarleySpoon;
+			sourceTree = "<group>";
+		};
+		CF3AE67C26E7F2860077253F /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				CF3AE67B26E7F2860077253F /* MarleySpoon.app */,
+				CF3AE68B26E7F2860077253F /* MarleySpoonTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		CF3AE68E26E7F2860077253F /* MarleySpoonTests */ = {
+			isa = PBXGroup;
+			children = (
+				CF3AE69126E7F2860077253F /* Info.plist */,
+				CF3DF33026E8F76F00F31504 /* RecipeViewModelTests.swift */,
+				CF3DF33626E8F7DB00F31504 /* MockedRecipeService.swift */,
+			);
+			path = MarleySpoonTests;
+			sourceTree = "<group>";
+		};
+		CF3AE71D26E7F6760077253F /* view */ = {
+			isa = PBXGroup;
+			children = (
+				CF3DF2CA26E8D17D00F31504 /* Details */,
+				CF3DF2C526E8CD2800F31504 /* Listing */,
+				CF3AE7A726E80A910077253F /* ImageView */,
+			);
+			path = view;
+			sourceTree = "<group>";
+		};
+		CF3AE72A26E7F96C0077253F /* Utilis */ = {
+			isa = PBXGroup;
+			children = (
+				CF3AE72B26E7F97A0077253F /* ImageLoader.swift */,
+			);
+			path = Utilis;
+			sourceTree = "<group>";
+		};
+		CF3AE74A26E7FFFB0077253F /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				CF3AE74B26E800030077253F /* Recipe.swift */,
+				CF3DF2E926E8D3B100F31504 /* Chef.swift */,
+				CF3DF2EF26E8D40800F31504 /* Tag.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		CF3AE75526E800D10077253F /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				CF3DF2F526E8DDF000F31504 /* RecipeService.swift */,
+				CF3DF30D26E8E1D100F31504 /* Constants.swift */,
+			);
+			path = Service;
+			sourceTree = "<group>";
+		};
+		CF3AE7A726E80A910077253F /* ImageView */ = {
+			isa = PBXGroup;
+			children = (
+				CF3AE79126E808910077253F /* CircleImage.swift */,
+				CF3AE72426E7F7A40077253F /* ImageView.swift */,
+			);
+			path = ImageView;
+			sourceTree = "<group>";
+		};
+		CF3DF2C526E8CD2800F31504 /* Listing */ = {
+			isa = PBXGroup;
+			children = (
+				CF3AE79726E8089C0077253F /* RecipeRow.swift */,
+				CF3AE79D26E809080077253F /* RecipeListView.swift */,
+			);
+			path = Listing;
+			sourceTree = "<group>";
+		};
+		CF3DF2CA26E8D17D00F31504 /* Details */ = {
+			isa = PBXGroup;
+			children = (
+				CF3AE78B26E8057B0077253F /* RecipeDetailView.swift */,
+			);
+			path = Details;
+			sourceTree = "<group>";
+		};
+		CF3DF31326E8E23C00F31504 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				CF3DF32426E8E26C00F31504 /* RecipeListViewModel.swift */,
+				CF3DF32A26E8E76D00F31504 /* RecipeDetailViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		CF3AE67A26E7F2860077253F /* MarleySpoon */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = CF3AE6A526E7F2860077253F /* Build configuration list for PBXNativeTarget "MarleySpoon" */;
+			buildPhases = (
+				324C080128BF1AA2B8BCD3A0 /* [CP] Check Pods Manifest.lock */,
+				CF3AE67726E7F2860077253F /* Sources */,
+				CF3AE67826E7F2860077253F /* Frameworks */,
+				CF3AE67926E7F2860077253F /* Resources */,
+				5921843E425D5063D0A611ED /* [CP] Embed Pods Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = MarleySpoon;
+			productName = "MarleySpoon (iOS)";
+			productReference = CF3AE67B26E7F2860077253F /* MarleySpoon.app */;
+			productType = "com.apple.product-type.application";
+		};
+		CF3AE68A26E7F2860077253F /* MarleySpoonTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = CF3AE6AB26E7F2860077253F /* Build configuration list for PBXNativeTarget "MarleySpoonTests" */;
+			buildPhases = (
+				317C2E8C95C08C392DFD9FB0 /* [CP] Check Pods Manifest.lock */,
+				CF3AE68726E7F2860077253F /* Sources */,
+				CF3AE68826E7F2860077253F /* Frameworks */,
+				CF3AE68926E7F2860077253F /* Resources */,
+				40EF5F986D4CC354E801CFC4 /* [CP] Embed Pods Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				CF3AE68D26E7F2860077253F /* PBXTargetDependency */,
+			);
+			name = MarleySpoonTests;
+			productName = "Tests iOS";
+			productReference = CF3AE68B26E7F2860077253F /* MarleySpoonTests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		CF3AE66F26E7F2850077253F /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1240;
+				LastUpgradeCheck = 1240;
+				TargetAttributes = {
+					CF3AE67A26E7F2860077253F = {
+						CreatedOnToolsVersion = 12.4;
+					};
+					CF3AE68A26E7F2860077253F = {
+						CreatedOnToolsVersion = 12.4;
+						TestTargetID = CF3AE67A26E7F2860077253F;
+					};
+				};
+			};
+			buildConfigurationList = CF3AE67226E7F2850077253F /* Build configuration list for PBXProject "MarleySpoon" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = CF3AE66E26E7F2850077253F;
+			productRefGroup = CF3AE67C26E7F2860077253F /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				CF3AE67A26E7F2860077253F /* MarleySpoon */,
+				CF3AE68A26E7F2860077253F /* MarleySpoonTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		CF3AE67926E7F2860077253F /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CF3AE6A126E7F2860077253F /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CF3AE68926E7F2860077253F /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		317C2E8C95C08C392DFD9FB0 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-MarleySpoonTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		324C080128BF1AA2B8BCD3A0 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-MarleySpoon-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		40EF5F986D4CC354E801CFC4 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-MarleySpoonTests/Pods-MarleySpoonTests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-MarleySpoonTests/Pods-MarleySpoonTests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-MarleySpoonTests/Pods-MarleySpoonTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		5921843E425D5063D0A611ED /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-MarleySpoon/Pods-MarleySpoon-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-MarleySpoon/Pods-MarleySpoon-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-MarleySpoon/Pods-MarleySpoon-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		CF3AE67726E7F2860077253F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CF3DF32526E8E26C00F31504 /* RecipeListViewModel.swift in Sources */,
+				CF3AE72526E7F7A40077253F /* ImageView.swift in Sources */,
+				CF3AE78C26E8057B0077253F /* RecipeDetailView.swift in Sources */,
+				CF3AE69F26E7F2860077253F /* ContentView.swift in Sources */,
+				CF3DF2EA26E8D3B100F31504 /* Chef.swift in Sources */,
+				CF3AE74C26E800030077253F /* Recipe.swift in Sources */,
+				CF3AE72C26E7F97A0077253F /* ImageLoader.swift in Sources */,
+				CF3DF2F026E8D40800F31504 /* Tag.swift in Sources */,
+				CF3DF32B26E8E76D00F31504 /* RecipeDetailViewModel.swift in Sources */,
+				CF3DF30E26E8E1D100F31504 /* Constants.swift in Sources */,
+				CF3DF2F626E8DDF000F31504 /* RecipeService.swift in Sources */,
+				CF3AE79E26E809080077253F /* RecipeListView.swift in Sources */,
+				CF3AE79826E8089C0077253F /* RecipeRow.swift in Sources */,
+				CF3AE69D26E7F2860077253F /* MarleySpoonApp.swift in Sources */,
+				CF3AE79226E808910077253F /* CircleImage.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CF3AE68726E7F2860077253F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CF3DF3DE26E90B9D00F31504 /* Recipe.swift in Sources */,
+				CF3DF3DF26E90B9D00F31504 /* Chef.swift in Sources */,
+				CF3DF3E026E90B9D00F31504 /* Tag.swift in Sources */,
+				CF3DF3CB26E9092400F31504 /* MockedRecipeService.swift in Sources */,
+				CF3DF39B26E9028800F31504 /* RecipeViewModelTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		CF3AE68D26E7F2860077253F /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = CF3AE67A26E7F2860077253F /* MarleySpoon */;
+			targetProxy = CF3AE68C26E7F2860077253F /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		CF3AE6A326E7F2860077253F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		CF3AE6A426E7F2860077253F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+			};
+			name = Release;
+		};
+		CF3AE6A626E7F2860077253F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7AEED8D50DBEA402A584B2F6 /* Pods-MarleySpoon.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				ENABLE_PREVIEWS = YES;
+				INFOPLIST_FILE = MarleySpoon/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = MarleySpoon.MarleySpoon;
+				PRODUCT_NAME = MarleySpoon;
+				SDKROOT = iphoneos;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		CF3AE6A726E7F2860077253F /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = A4227D26FD91F5FCB8F2029B /* Pods-MarleySpoon.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				ENABLE_PREVIEWS = YES;
+				INFOPLIST_FILE = MarleySpoon/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = MarleySpoon.MarleySpoon;
+				PRODUCT_NAME = MarleySpoon;
+				SDKROOT = iphoneos;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		CF3AE6AC26E7F2860077253F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = AC8B96719720A40D610FF8AE /* Pods-MarleySpoonTests.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = MarleySpoonTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "MarleySpoon.Tests-iOS";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				SDKROOT = iphoneos;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = MarleySpoon;
+			};
+			name = Debug;
+		};
+		CF3AE6AD26E7F2860077253F /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = BB7867913FD0E39645415929 /* Pods-MarleySpoonTests.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = MarleySpoonTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "MarleySpoon.Tests-iOS";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				SDKROOT = iphoneos;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = MarleySpoon;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		CF3AE67226E7F2850077253F /* Build configuration list for PBXProject "MarleySpoon" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CF3AE6A326E7F2860077253F /* Debug */,
+				CF3AE6A426E7F2860077253F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		CF3AE6A526E7F2860077253F /* Build configuration list for PBXNativeTarget "MarleySpoon" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CF3AE6A626E7F2860077253F /* Debug */,
+				CF3AE6A726E7F2860077253F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		CF3AE6AB26E7F2860077253F /* Build configuration list for PBXNativeTarget "MarleySpoonTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CF3AE6AC26E7F2860077253F /* Debug */,
+				CF3AE6AD26E7F2860077253F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = CF3AE66F26E7F2850077253F /* Project object */;
+}
