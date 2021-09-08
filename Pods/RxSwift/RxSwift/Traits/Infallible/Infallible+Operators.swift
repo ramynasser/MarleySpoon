@@ -7,6 +7,7 @@
 //
 
 // MARK: - Static allocation
+
 extension InfallibleType {
     /**
      Returns an infallible sequence that contains a single element.
@@ -112,6 +113,7 @@ extension Infallible {
 }
 
 // MARK: - Filter
+
 extension InfallibleType {
     /**
      Filters the elements of an observable sequence based on a predicate.
@@ -128,6 +130,7 @@ extension InfallibleType {
 }
 
 // MARK: - Map
+
 extension InfallibleType {
     /**
      Projects each element of an observable sequence into a new form.
@@ -183,7 +186,7 @@ extension InfallibleType {
      */
     public func distinctUntilChanged<Key: Equatable>(_ keySelector: @escaping (Element) throws -> Key)
         -> Infallible<Element> {
-        Infallible(self.asObservable().distinctUntilChanged(keySelector, comparer: { $0 == $1 }))
+        Infallible(asObservable().distinctUntilChanged(keySelector, comparer: { $0 == $1 }))
     }
 
     /**
@@ -196,7 +199,7 @@ extension InfallibleType {
      */
     public func distinctUntilChanged(_ comparer: @escaping (Element, Element) throws -> Bool)
         -> Infallible<Element> {
-        Infallible(self.asObservable().distinctUntilChanged({ $0 }, comparer: comparer))
+        Infallible(asObservable().distinctUntilChanged({ $0 }, comparer: comparer))
     }
 
     /**
@@ -214,12 +217,12 @@ extension InfallibleType {
     }
 
     /**
-    Returns an observable sequence that contains only contiguous elements with distinct values in the provided key path on each object.
+     Returns an observable sequence that contains only contiguous elements with distinct values in the provided key path on each object.
 
-    - seealso: [distinct operator on reactivex.io](http://reactivex.io/documentation/operators/distinct.html)
+     - seealso: [distinct operator on reactivex.io](http://reactivex.io/documentation/operators/distinct.html)
 
-    - returns: An observable sequence only containing the distinct contiguous elements, based on equality operator on the provided key path
-    */
+     - returns: An observable sequence only containing the distinct contiguous elements, based on equality operator on the provided key path
+     */
     public func distinctUntilChanged<Property: Equatable>(at keyPath: KeyPath<Element, Property>) ->
         Infallible<Element> {
         Infallible(asObservable().distinctUntilChanged { $0[keyPath: keyPath] == $1[keyPath: keyPath] })
@@ -227,6 +230,7 @@ extension InfallibleType {
 }
 
 // MARK: - Throttle
+
 extension InfallibleType {
     /**
      Ignores elements from an observable sequence which are followed by another element within a specified relative time duration, using the specified scheduler to run throttling timers.
@@ -261,6 +265,7 @@ extension InfallibleType {
 }
 
 // MARK: - FlatMap
+
 extension InfallibleType {
     /**
      Projects each element of an observable sequence to an observable sequence and merges the resulting observable sequences into one observable sequence.
@@ -308,6 +313,7 @@ extension InfallibleType {
 }
 
 // MARK: - Concat
+
 extension InfallibleType {
     /**
      Concatenates the second observable sequence to `self` upon successful termination of `self`.
@@ -388,6 +394,7 @@ extension InfallibleType {
 }
 
 // MARK: - Merge
+
 extension InfallibleType {
     /**
      Merges elements from all observable sequences from collection into a single observable sequence.
@@ -449,6 +456,7 @@ extension Infallible {
 }
 
 // MARK: - Scan
+
 extension InfallibleType {
     /**
      Applies an accumulator function over an observable sequence and returns each intermediate result. The specified seed value is used as the initial accumulator value.
@@ -487,21 +495,20 @@ extension InfallibleType {
 
 extension InfallibleType {
     /**
-    Prepends a value to an observable sequence.
+     Prepends a value to an observable sequence.
 
-    - seealso: [startWith operator on reactivex.io](http://reactivex.io/documentation/operators/startwith.html)
+     - seealso: [startWith operator on reactivex.io](http://reactivex.io/documentation/operators/startwith.html)
 
-    - parameter element: Element to prepend to the specified sequence.
-    - returns: The source sequence prepended with the specified values.
-    */
+     - parameter element: Element to prepend to the specified sequence.
+     - returns: The source sequence prepended with the specified values.
+     */
     public func startWith(_ element: Element) -> Infallible<Element> {
         Infallible(asObservable().startWith(element))
     }
 }
 
-
-
 // MARK: - Take and Skip {
+
 extension InfallibleType {
     /**
      Returns the elements from the source observable sequence until the other observable sequence produces an element.
@@ -612,6 +619,7 @@ extension InfallibleType {
 }
 
 // MARK: - Share
+
 extension InfallibleType {
     /**
      Returns an observable sequence that **shares a single subscription to the underlying sequence**, and immediately upon subscription replays  elements in buffer.
@@ -646,14 +654,15 @@ extension InfallibleType {
 }
 
 // MARK: - withUnretained
+
 extension InfallibleType {
     /**
      Provides an unretained, safe to use (i.e. not implicitly unwrapped), reference to an object along with the events emitted by the sequence.
-     
+
      In the case the provided object cannot be retained successfully, the seqeunce will complete.
-     
+
      - note: Be careful when using this operator in a sequence that has a buffer or replay, for example `share(replay: 1)`, as the sharing buffer will also include the provided object, which could potentially cause a retain cycle.
-     
+
      - parameter obj: The object to provide an unretained reference on.
      - parameter resultSelector: A function to combine the unretained referenced on `obj` and the value of the observable sequence.
      - returns: An observable sequence that contains the result of `resultSelector` being called with an unretained reference on `obj` and the values of the original sequence.
@@ -662,16 +671,16 @@ extension InfallibleType {
         _ obj: Object,
         resultSelector: @escaping (Object, Element) -> Out
     ) -> Infallible<Out> {
-        Infallible(self.asObservable().withUnretained(obj, resultSelector: resultSelector))
+        Infallible(asObservable().withUnretained(obj, resultSelector: resultSelector))
     }
-    
+
     /**
      Provides an unretained, safe to use (i.e. not implicitly unwrapped), reference to an object along with the events emitted by the sequence.
-     
+
      In the case the provided object cannot be retained successfully, the seqeunce will complete.
-     
+
      - note: Be careful when using this operator in a sequence that has a buffer or replay, for example `share(replay: 1)`, as the sharing buffer will also include the provided object, which could potentially cause a retain cycle.
-     
+
      - parameter obj: The object to provide an unretained reference on.
      - returns: An observable sequence of tuples that contains both an unretained reference on `obj` and the values of the original sequence.
      */
@@ -682,6 +691,7 @@ extension InfallibleType {
 
 extension InfallibleType {
     // MARK: - withLatestFrom
+
     /**
      Merges two observable sequences into one observable sequence by combining each element from self with the latest element from the second source, if any.
 
@@ -693,7 +703,7 @@ extension InfallibleType {
      - returns: An observable sequence containing the result of combining each element of the self  with the latest element from the second source, if any, using the specified result selector function.
      */
     public func withLatestFrom<Source: InfallibleType, ResultType>(_ second: Source, resultSelector: @escaping (Element, Source.Element) throws -> ResultType) -> Infallible<ResultType> {
-        Infallible(self.asObservable().withLatestFrom(second.asObservable(), resultSelector: resultSelector))
+        Infallible(asObservable().withLatestFrom(second.asObservable(), resultSelector: resultSelector))
     }
 
     /**

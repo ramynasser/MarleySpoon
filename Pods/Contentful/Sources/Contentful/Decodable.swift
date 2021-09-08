@@ -10,7 +10,6 @@ import Foundation
 
 /// Helper methods for decoding instances of the various types in your content model.
 public extension Decoder {
-
     var canResolveLinks: Bool {
         return userInfo[.linkResolverContextKey] is LinkResolver
     }
@@ -28,10 +27,11 @@ public extension Decoder {
     var contentTypes: [ContentTypeId: EntryDecodable.Type] {
         guard let contentTypes = userInfo[.contentTypesContextKey] as? [ContentTypeId: EntryDecodable.Type] else {
             fatalError(
-            """
-            Make sure to pass your content types into the Client intializer
-            so the SDK can properly deserializer your own types if you are using the `fetchMappedEntries` methods
-            """)
+                """
+                Make sure to pass your content types into the Client intializer
+                so the SDK can properly deserializer your own types if you are using the `fetchMappedEntries` methods
+                """
+            )
         }
         return contentTypes
     }
@@ -48,7 +48,7 @@ public extension Decoder {
         let sys = try container.decode(Sys.self, forKey: .sys)
         return sys
     }
-    
+
     /// Helper method to extract the metadata property of a Contentful resource if it exists.
     func metadata() throws -> Metadata? {
         let container = try self.container(keyedBy: LocalizableResource.CodingKeys.self)
@@ -64,7 +64,6 @@ public extension Decoder {
 }
 
 extension JSONDecoder {
-
     /// Returns the JSONDecoder owned by the Client. Until the first request to the CDA is made, this
     /// decoder won't have the necessary localization content required to properly deserialize resources
     /// returned in the multi-locale format.
@@ -85,7 +84,7 @@ extension Decodable where Self: EntryDecodable {
     // This is a magic workaround for the fact that dynamic metatypes cannot be passed into
     // initializers such as UnkeyedDecodingContainer.decode(Decodable.Type), yet static methods CAN
     // be called on metatypes. (Visitor pattern)
-   public static func popEntryDecodable(from container: inout UnkeyedDecodingContainer) throws -> Self {
+    public static func popEntryDecodable(from container: inout UnkeyedDecodingContainer) throws -> Self {
         let entryDecodable = try container.decode(self)
         return entryDecodable
     }
@@ -114,7 +113,6 @@ internal extension CodingUserInfoKey {
 
 // Fields JSON container.
 public extension KeyedDecodingContainer {
-
     /// Caches a link to be resolved once all resources in the response have been serialized.
     ///
     /// - Parameters:
@@ -123,10 +121,9 @@ public extension KeyedDecodingContainer {
     ///   - callback: The callback used to assign the linked item at a later time.
     /// - Throws: Forwards the error if no link object is in the JSON at the specified key.
     func resolveLink(forKey key: KeyedDecodingContainer.Key,
-                            decoder: Decoder,
-                            callback: @escaping (AnyObject) -> Void) throws {
-
-        guard decoder.canResolveLinks  else { return }
+                     decoder: Decoder,
+                     callback: @escaping (AnyObject) -> Void) throws {
+        guard decoder.canResolveLinks else { return }
         let linkResolver = decoder.linkResolver
         if let link = try decodeIfPresent(Link.self, forKey: key) {
             linkResolver.resolve(link, callback: callback)
@@ -141,9 +138,8 @@ public extension KeyedDecodingContainer {
     ///   - callback: The callback used to assign the linked items at a later time.
     /// - Throws: Forwards the error if no link object is in the JSON at the specified key.
     func resolveLinksArray(forKey key: KeyedDecodingContainer.Key,
-                                  decoder: Decoder,
-                                  callback: @escaping (AnyObject) -> Void) throws {
-
+                           decoder: Decoder,
+                           callback: @escaping (AnyObject) -> Void) throws {
         let linkResolver = decoder.linkResolver
         if let links = try decodeIfPresent(Array<Link>.self, forKey: key) {
             linkResolver.resolve(links, callback: callback)
@@ -168,9 +164,8 @@ struct JSONCodingKeys: CodingKey {
 }
 
 extension KeyedDecodingContainer {
-
     func decode(_ type: Dictionary<String, Any>.Type, forKey key: K) throws -> Dictionary<String, Any> {
-        let container = try self.nestedContainer(keyedBy: JSONCodingKeys.self, forKey: key)
+        let container = try nestedContainer(keyedBy: JSONCodingKeys.self, forKey: key)
         return try container.decode(type)
     }
 
@@ -181,7 +176,7 @@ extension KeyedDecodingContainer {
     }
 
     func decode(_ type: Array<Any>.Type, forKey key: K) throws -> Array<Any> {
-        var container = try self.nestedUnkeyedContainer(forKey: key)
+        var container = try nestedUnkeyedContainer(forKey: key)
         return try container.decode(type)
     }
 
@@ -191,7 +186,7 @@ extension KeyedDecodingContainer {
         return try decode(type, forKey: key)
     }
 
-    func decode(_ type: Dictionary<String, Any>.Type) throws -> Dictionary<String, Any> {
+    func decode(_: Dictionary<String, Any>.Type) throws -> Dictionary<String, Any> {
         var dictionary = Dictionary<String, Any>()
 
         for key in allKeys {
@@ -203,9 +198,7 @@ extension KeyedDecodingContainer {
                 dictionary[key.stringValue] = intValue
             } else if let doubleValue = try? decode(Double.self, forKey: key) {
                 dictionary[key.stringValue] = doubleValue
-            }
-            // Custom contentful types.
-            else if let fileMetaData = try? decode(Asset.FileMetadata.self, forKey: key) {
+            } else if let fileMetaData = try? decode(Asset.FileMetadata.self, forKey: key) {
                 dictionary[key.stringValue] = fileMetaData
             } else if let link = try? decode(Link.self, forKey: key) {
                 dictionary[key.stringValue] = link
@@ -213,9 +206,7 @@ extension KeyedDecodingContainer {
                 dictionary[key.stringValue] = location
             } else if let document = try? decode(RichTextDocument.self, forKey: key) {
                 dictionary[key.stringValue] = document
-            }
-            // These must be called after attempting to decode all other custom types.
-            else if let nestedDictionary = try? decode(Dictionary<String, Any>.self, forKey: key) {
+            } else if let nestedDictionary = try? decode(Dictionary<String, Any>.self, forKey: key) {
                 dictionary[key.stringValue] = nestedDictionary
             } else if let nestedArray = try? decode(Array<Any>.self, forKey: key) {
                 dictionary[key.stringValue] = nestedArray
@@ -226,8 +217,7 @@ extension KeyedDecodingContainer {
 }
 
 extension UnkeyedDecodingContainer {
-
-    mutating func decode(_ type: Array<Any>.Type) throws -> Array<Any> {
+    mutating func decode(_: Array<Any>.Type) throws -> Array<Any> {
         var array: [Any] = []
         while isAtEnd == false {
             if try decodeNil() {
@@ -240,22 +230,17 @@ extension UnkeyedDecodingContainer {
                 array.append(value)
             } else if let value = try? decode(String.self) {
                 array.append(value)
-            }
-            // Custom contentful types.
-            else if let fileMetaData = try? decode(Asset.FileMetadata.self) {
+            } else if let fileMetaData = try? decode(Asset.FileMetadata.self) {
                 array.append(fileMetaData) // Custom contentful type.
             } else if let link = try? decode(Link.self) {
                 array.append(link) // Custom contentful type.
-            }
-            // These must be called after attempting to decode all other custom types.
-            else if let nestedDictionary = try? decode(Dictionary<String, Any>.self) {
+            } else if let nestedDictionary = try? decode(Dictionary<String, Any>.self) {
                 array.append(nestedDictionary)
             } else if let nestedArray = try? decodeNested(Array<Any>.self) {
                 array.append(nestedArray)
             } else if let location = try? decode(Location.self) {
                 array.append(location)
             }
-
         }
         return array
     }
@@ -268,7 +253,7 @@ extension UnkeyedDecodingContainer {
 
 private extension UnkeyedDecodingContainer {
     mutating func decodeNested(_ type: Array<Any>.Type) throws -> Array<Any> {
-        var nestedContainer = try self.nestedUnkeyedContainer()
+        var nestedContainer = try nestedUnkeyedContainer()
         return try nestedContainer.decode(type)
     }
 }

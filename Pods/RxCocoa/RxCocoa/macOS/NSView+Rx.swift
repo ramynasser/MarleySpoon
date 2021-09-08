@@ -13,7 +13,7 @@
     extension Reactive where Base: NSView {
         /// Bindable sink for `alphaValue` property.
         public var alpha: Binder<CGFloat> {
-            return Binder(self.base) { view, value in
+            return Binder(base) { view, value in
                 view.alphaValue = value
             }
         }

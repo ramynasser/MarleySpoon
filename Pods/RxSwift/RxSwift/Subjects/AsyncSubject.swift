@@ -22,7 +22,7 @@ public final class AsyncSubject<Element>
 
     /// Indicates whether the subject has any observers
     public var hasObservers: Bool {
-        self.lock.performLocked {
+        lock.performLocked {
             self.observers.count > 0
         }
     }
@@ -34,15 +34,15 @@ public final class AsyncSubject<Element>
     private var isStopped = false
     private var stoppedEvent = nil as Event<Element>? {
         didSet {
-            self.isStopped = self.stoppedEvent != nil
+            isStopped = stoppedEvent != nil
         }
     }
+
     private var lastElement: Element?
 
     #if DEBUG
         private let synchronizationTracker = SynchronizationTracker()
     #endif
-
 
     /// Creates a subject.
     public override init() {
@@ -57,10 +57,10 @@ public final class AsyncSubject<Element>
     /// - parameter event: Event to send to the observers.
     public func on(_ event: Event<Element>) {
         #if DEBUG
-            self.synchronizationTracker.register(synchronizationErrorMessage: .default)
+            synchronizationTracker.register(synchronizationErrorMessage: .default)
             defer { self.synchronizationTracker.unregister() }
         #endif
-        let (observers, event) = self.synchronized_on(event)
+        let (observers, event) = synchronized_on(event)
         switch event {
         case .next:
             dispatch(observers, event)
@@ -73,17 +73,17 @@ public final class AsyncSubject<Element>
     }
 
     func synchronized_on(_ event: Event<Element>) -> (Observers, Event<Element>) {
-        self.lock.lock(); defer { self.lock.unlock() }
-        if self.isStopped {
+        lock.lock(); defer { self.lock.unlock() }
+        if isStopped {
             return (Observers(), .completed)
         }
 
         switch event {
-        case .next(let element):
-            self.lastElement = element
+        case let .next(element):
+            lastElement = element
             return (Observers(), .completed)
         case .error:
-            self.stoppedEvent = event
+            stoppedEvent = event
 
             let observers = self.observers
             self.observers.removeAll()
@@ -95,11 +95,10 @@ public final class AsyncSubject<Element>
             self.observers.removeAll()
 
             if let lastElement = self.lastElement {
-                self.stoppedEvent = .next(lastElement)
+                stoppedEvent = .next(lastElement)
                 return (observers, .next(lastElement))
-            }
-            else {
-                self.stoppedEvent = event
+            } else {
+                stoppedEvent = event
                 return (observers, .completed)
             }
         }
@@ -110,7 +109,7 @@ public final class AsyncSubject<Element>
     /// - parameter observer: Observer to subscribe to the subject.
     /// - returns: Disposable object that can be used to unsubscribe the observer from the subject.
     public override func subscribe<Observer: ObserverType>(_ observer: Observer) -> Disposable where Observer.Element == Element {
-        self.lock.performLocked { self.synchronized_subscribe(observer) }
+        lock.performLocked { self.synchronized_subscribe(observer) }
     }
 
     func synchronized_subscribe<Observer: ObserverType>(_ observer: Observer) -> Disposable where Observer.Element == Element {
@@ -133,22 +132,21 @@ public final class AsyncSubject<Element>
     }
 
     func synchronizedUnsubscribe(_ disposeKey: DisposeKey) {
-        self.lock.performLocked { self.synchronized_unsubscribe(disposeKey) }
+        lock.performLocked { self.synchronized_unsubscribe(disposeKey) }
     }
-    
+
     func synchronized_unsubscribe(_ disposeKey: DisposeKey) {
         _ = self.observers.removeKey(disposeKey)
     }
-    
+
     /// Returns observer interface for subject.
     public func asObserver() -> AsyncSubject<Element> {
         self
     }
 
     #if TRACE_RESOURCES
-    deinit {
-        _ = Resources.decrementTotal()
-    }
+        deinit {
+            _ = Resources.decrementTotal()
+        }
     #endif
 }
-

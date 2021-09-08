@@ -5,8 +5,8 @@
 //  Created by Ramy Nasser on 08/09/2021.
 //
 
-import RxSwift
 import Combine
+import RxSwift
 
 public class RecipeListViewModel: ObservableObject {
     private let disposeBag = DisposeBag()
@@ -16,23 +16,21 @@ public class RecipeListViewModel: ObservableObject {
     @Published public var recipes: [Recipe] = []
 
     public init(service: RecipeServiceProtocol = RecipeService()) {
-        
-     self.service = service
-        
+        self.service = service
+
         service.result.asDriver().asObservable().subscribe(onNext: { [weak self] result in
-        guard let self = self else {
-            return
-        }
-        switch result {
-        case .success(let recipes):
-            self.recipes = recipes
-        case .failure(let error):
-            self.error = error.localizedDescription
-        }
-      }).disposed(by: disposeBag)
-        
+            guard let self = self else {
+                return
+            }
+            switch result {
+            case let .success(recipes):
+                self.recipes = recipes
+            case let .failure(error):
+                self.error = error.localizedDescription
+            }
+        }).disposed(by: disposeBag)
     }
-    
+
     public func fetchRecipes() {
         service.fetchRecipes()
     }

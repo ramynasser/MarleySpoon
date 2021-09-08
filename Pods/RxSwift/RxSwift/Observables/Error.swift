@@ -19,15 +19,15 @@ extension ObservableType {
     }
 }
 
-final private class ErrorProducer<Element>: Producer<Element> {
+private final class ErrorProducer<Element>: Producer<Element> {
     private let error: Swift.Error
-    
+
     init(error: Swift.Error) {
         self.error = error
     }
-    
+
     override func subscribe<Observer: ObserverType>(_ observer: Observer) -> Disposable where Observer.Element == Element {
-        observer.on(.error(self.error))
+        observer.on(.error(error))
         return Disposables.create()
     }
 }

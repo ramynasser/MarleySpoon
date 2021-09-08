@@ -10,10 +10,8 @@ import Foundation
 
 /// A container for the synchronized state of a Space
 public final class SyncSpace: Decodable {
-
     /// The url parameters relevant for the next sync operation that this `SyncSpace` can perform.
     public var parameters: [String: String] {
-
         if syncToken.isEmpty {
             var parameters = [String: String]()
             parameters["initial"] = true.description
@@ -47,7 +45,6 @@ public final class SyncSpace: Decodable {
 
         /// Query parameters.
         public var parameters: [String: String] {
-
             let typeParameter = "type"
             switch self {
             case .all:
@@ -63,7 +60,7 @@ public final class SyncSpace: Decodable {
                 return [typeParameter: "DeletedEntry"]
             case .deletedAssets:
                 return [typeParameter: "DeletedAsset"]
-            case .entriesOfContentType(let contentTypeId):
+            case let .entriesOfContentType(contentTypeId):
                 return [typeParameter: "Entry", QueryParameter.contentType: contentTypeId]
             }
         }
@@ -78,13 +75,13 @@ public final class SyncSpace: Decodable {
     /// An array of identifiers for entries that were deleted after the last sync operations.
     public var deletedEntryIds = [String]()
 
-    internal(set) public var hasMorePages: Bool
+    public internal(set) var hasMorePages: Bool
 
     /// A token which needs to be present to perform a subsequent synchronization operation
-    internal(set) public var syncToken = ""
+    public internal(set) var syncToken = ""
 
     /// Number of entities per page in a sync operation. See documentation for details.
-    internal(set) public var limit: Int?
+    public internal(set) var limit: Int?
 
     /// List of Assets currently published on the Space being synchronized
     public var assets: [Asset] {
@@ -100,7 +97,7 @@ public final class SyncSpace: Decodable {
     ///
     /// - Parameter syncToken: The sync token from a previous synchronization.
     public init(syncToken: String = "", limit: Int? = nil) {
-        self.hasMorePages = false
+        hasMorePages = false
         self.syncToken = syncToken
         self.limit = limit
     }
@@ -116,20 +113,20 @@ public final class SyncSpace: Decodable {
     }
 
     public required init(from decoder: Decoder) throws {
-        let container   = try decoder.container(keyedBy: CodingKeys.self)
-        var syncUrl     = try container.decodeIfPresent(String.self, forKey: .nextPageUrl)
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        var syncUrl = try container.decodeIfPresent(String.self, forKey: .nextPageUrl)
 
         var hasMorePages = true
         if syncUrl == nil {
             hasMorePages = false
-            syncUrl     = try container.decodeIfPresent(String.self, forKey: .nextSyncUrl)
+            syncUrl = try container.decodeIfPresent(String.self, forKey: .nextSyncUrl)
         }
 
         guard let nextSyncUrl = syncUrl else {
             throw SDKError.unparseableJSON(data: nil, errorMessage: "No sync url for future sync operations was serialized from the response.")
         }
 
-        self.syncToken = SyncSpace.syncToken(from: nextSyncUrl)
+        syncToken = SyncSpace.syncToken(from: nextSyncUrl)
         self.hasMorePages = hasMorePages
 
         // A copy as an array of dictionaries just to extract "sys.type" field.
@@ -140,17 +137,16 @@ public final class SyncSpace: Decodable {
 
         var resources = [Resource]()
         while itemsArrayContainer.isAtEnd == false {
-
             guard let sys = items[itemsArrayContainer.currentIndex]["sys"] as? [String: Any], let type = sys["type"] as? String else {
                 let errorMessage = "SDK was unable to parse sys.type property necessary to finish resource serialization."
                 throw SDKError.unparseableJSON(data: nil, errorMessage: errorMessage)
             }
             let item: Resource
             switch type {
-            case "Asset":           item = try itemsArrayContainer.decode(Asset.self)
-            case "Entry":           item = try itemsArrayContainer.decode(Entry.self)
-            case "DeletedAsset":    item = try itemsArrayContainer.decode(DeletedResource.self)
-            case "DeletedEntry":    item = try itemsArrayContainer.decode(DeletedResource.self)
+            case "Asset": item = try itemsArrayContainer.decode(Asset.self)
+            case "Entry": item = try itemsArrayContainer.decode(Entry.self)
+            case "DeletedAsset": item = try itemsArrayContainer.decode(DeletedResource.self)
+            case "DeletedEntry": item = try itemsArrayContainer.decode(DeletedResource.self)
             default: fatalError("Unsupported resource type '\(type)'")
             }
             resources.append(item)
@@ -166,7 +162,6 @@ public final class SyncSpace: Decodable {
     }
 
     internal func updateWithDiffs(from syncSpace: SyncSpace) {
-
         // Resolve all entries in-memory.
         for entry in entries {
             entry.resolveLinks(against: entriesMap, and: assetsMap)
@@ -197,15 +192,15 @@ public final class SyncSpace: Decodable {
         for resource in resources {
             switch resource {
             case let asset as Asset:
-                self.assetsMap[asset.sys.id] = asset
+                assetsMap[asset.sys.id] = asset
 
             case let entry as Entry:
-                self.entriesMap[entry.sys.id] = entry
+                entriesMap[entry.sys.id] = entry
 
             case let deletedResource as DeletedResource:
                 switch deletedResource.sys.type {
-                case "DeletedAsset": self.deletedAssetIds.append(deletedResource.sys.id)
-                case "DeletedEntry": self.deletedEntryIds.append(deletedResource.sys.id)
+                case "DeletedAsset": deletedAssetIds.append(deletedResource.sys.id)
+                case "DeletedEntry": deletedEntryIds.append(deletedResource.sys.id)
                 default: break
                 }
             default: break

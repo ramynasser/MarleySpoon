@@ -6,39 +6,38 @@
 //
 
 import Foundation
-import RxSwift
 import RxCocoa
+import RxSwift
 
 public class RecipeServiceStub: RecipeServiceProtocol {
-    public var result = BehaviorRelay<Result<[Recipe],Error>>(value: .success([]))
+    public var result = BehaviorRelay<Result<[Recipe], Error>>(value: .success([]))
     var fetchRecipeCallCount = 0
     var stubbedRecipes: [Recipe] = []
     var stubbedErrorString = ""
-    
+
     init(recipes: [Recipe]) {
         result.accept(.success(recipes))
         stubbedRecipes = recipes
     }
-    
+
     init(errorMessage: String) {
         let error = MockError.dummyError(message: errorMessage)
         result.accept(.failure(error))
         stubbedErrorString = errorMessage
     }
-    
+
     public func fetchRecipes() {
-      fetchRecipeCallCount += 1
+        fetchRecipeCallCount += 1
     }
-    
 }
 
 enum MockError: Error, LocalizedError {
-  case dummyError(message: String)
+    case dummyError(message: String)
 
-  public var errorDescription: String? {
-    switch self {
-    case .dummyError(let message):
-      return message
+    public var errorDescription: String? {
+        switch self {
+        case let .dummyError(message):
+            return message
+        }
     }
-  }
 }

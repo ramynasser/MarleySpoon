@@ -8,19 +8,18 @@
 import Foundation
 
 extension Client {
-
     /**
-    Performs a synchronization operation, updating the passed in `SyncSpace` instance with latest content from the server.
+     Performs a synchronization operation, updating the passed in `SyncSpace` instance with latest content from the server.
 
-    If passed in `SyncSpace` is an instance with empty sync token, full synchronization will be done.
+     If passed in `SyncSpace` is an instance with empty sync token, full synchronization will be done.
 
-    Calling this will mutate passed in `SyncSpace `and also pass back  a reference to it in the completion handler
-    in order to allow chaining of operations.
+     Calling this will mutate passed in `SyncSpace `and also pass back  a reference to it in the completion handler
+     in order to allow chaining of operations.
 
-    - Parameters:
-        - syncSpace: Instance to perform subsqeuent sync on. Empty instance by default.
-        - syncableTypes: The types that can be synchronized.
-        - completion: The completion handler to call when the operation is complete.
+     - Parameters:
+     - syncSpace: Instance to perform subsqeuent sync on. Empty instance by default.
+     - syncableTypes: The types that can be synchronized.
+     - completion: The completion handler to call when the operation is complete.
      */
     @discardableResult
     public func sync(
@@ -46,7 +45,7 @@ extension Client {
 
         return fetchDecodable(url: url(endpoint: .sync, parameters: parameters)) { (result: Result<SyncSpace, Error>) in
             switch result {
-            case .success(let newSyncSpace):
+            case let .success(newSyncSpace):
                 syncSpace.updateWithDiffs(from: newSyncSpace)
                 self.persistenceIntegration?.update(with: newSyncSpace)
                 if newSyncSpace.hasMorePages {
@@ -54,7 +53,7 @@ extension Client {
                 } else {
                     completion(.success(syncSpace))
                 }
-            case .failure(let error):
+            case let .failure(error):
                 completion(.failure(error))
             }
         }

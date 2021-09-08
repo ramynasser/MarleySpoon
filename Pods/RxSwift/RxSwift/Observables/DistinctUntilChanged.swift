@@ -7,7 +7,6 @@
 //
 
 extension ObservableType where Element: Equatable {
-
     /**
      Returns an observable sequence that contains only distinct contiguous elements according to equality operator.
 
@@ -17,7 +16,7 @@ extension ObservableType where Element: Equatable {
      */
     public func distinctUntilChanged()
         -> Observable<Element> {
-        self.distinctUntilChanged({ $0 }, comparer: { ($0 == $1) })
+        distinctUntilChanged({ $0 }, comparer: { ($0 == $1) })
     }
 }
 
@@ -32,7 +31,7 @@ extension ObservableType {
      */
     public func distinctUntilChanged<Key: Equatable>(_ keySelector: @escaping (Element) throws -> Key)
         -> Observable<Element> {
-        self.distinctUntilChanged(keySelector, comparer: { $0 == $1 })
+        distinctUntilChanged(keySelector, comparer: { $0 == $1 })
     }
 
     /**
@@ -45,7 +44,7 @@ extension ObservableType {
      */
     public func distinctUntilChanged(_ comparer: @escaping (Element, Element) throws -> Bool)
         -> Observable<Element> {
-        self.distinctUntilChanged({ $0 }, comparer: comparer)
+        distinctUntilChanged({ $0 }, comparer: comparer)
     }
 
     /**
@@ -59,79 +58,78 @@ extension ObservableType {
      */
     public func distinctUntilChanged<K>(_ keySelector: @escaping (Element) throws -> K, comparer: @escaping (K, K) throws -> Bool)
         -> Observable<Element> {
-            return DistinctUntilChanged(source: self.asObservable(), selector: keySelector, comparer: comparer)
+        return DistinctUntilChanged(source: asObservable(), selector: keySelector, comparer: comparer)
     }
 
     /**
-    Returns an observable sequence that contains only contiguous elements with distinct values in the provided key path on each object.
+     Returns an observable sequence that contains only contiguous elements with distinct values in the provided key path on each object.
 
-    - seealso: [distinct operator on reactivex.io](http://reactivex.io/documentation/operators/distinct.html)
+     - seealso: [distinct operator on reactivex.io](http://reactivex.io/documentation/operators/distinct.html)
 
-    - returns: An observable sequence only containing the distinct contiguous elements, based on equality operator on the provided key path
-    */
+     - returns: An observable sequence only containing the distinct contiguous elements, based on equality operator on the provided key path
+     */
     public func distinctUntilChanged<Property: Equatable>(at keyPath: KeyPath<Element, Property>) ->
         Observable<Element> {
-        self.distinctUntilChanged { $0[keyPath: keyPath] == $1[keyPath: keyPath] }
+        distinctUntilChanged { $0[keyPath: keyPath] == $1[keyPath: keyPath] }
     }
 }
 
-final private class DistinctUntilChangedSink<Observer: ObserverType, Key>: Sink<Observer>, ObserverType {
-    typealias Element = Observer.Element 
-    
+private final class DistinctUntilChangedSink<Observer: ObserverType, Key>: Sink<Observer>, ObserverType {
+    typealias Element = Observer.Element
+
     private let parent: DistinctUntilChanged<Element, Key>
     private var currentKey: Key?
-    
+
     init(parent: DistinctUntilChanged<Element, Key>, observer: Observer, cancel: Cancelable) {
         self.parent = parent
         super.init(observer: observer, cancel: cancel)
     }
-    
+
     func on(_ event: Event<Element>) {
         switch event {
-        case .next(let value):
+        case let .next(value):
             do {
-                let key = try self.parent.selector(value)
+                let key = try parent.selector(value)
                 var areEqual = false
                 if let currentKey = self.currentKey {
-                    areEqual = try self.parent.comparer(currentKey, key)
+                    areEqual = try parent.comparer(currentKey, key)
                 }
-                
+
                 if areEqual {
                     return
                 }
-                
-                self.currentKey = key
-                
-                self.forwardOn(event)
-            }
-            catch let error {
+
+                currentKey = key
+
+                forwardOn(event)
+            } catch let error {
                 self.forwardOn(.error(error))
                 self.dispose()
             }
         case .error, .completed:
-            self.forwardOn(event)
-            self.dispose()
+            forwardOn(event)
+            dispose()
         }
     }
 }
 
-final private class DistinctUntilChanged<Element, Key>: Producer<Element> {
+private final class DistinctUntilChanged<Element, Key>: Producer<Element> {
     typealias KeySelector = (Element) throws -> Key
     typealias EqualityComparer = (Key, Key) throws -> Bool
-    
+
     private let source: Observable<Element>
     fileprivate let selector: KeySelector
     fileprivate let comparer: EqualityComparer
-    
+
     init(source: Observable<Element>, selector: @escaping KeySelector, comparer: @escaping EqualityComparer) {
         self.source = source
         self.selector = selector
         self.comparer = comparer
     }
-    
+
     override func run<Observer: ObserverType>(_ observer: Observer, cancel: Cancelable) -> (sink: Disposable, subscription: Disposable) where Observer.Element == Element {
         let sink = DistinctUntilChangedSink(parent: self, observer: observer, cancel: cancel)
-        let subscription = self.source.subscribe(sink)
+        let subscription = source.subscribe(sink)
         return (sink: sink, subscription: subscription)
     }
 }

@@ -6,8 +6,8 @@
 //  Copyright © 2015 Krunoslav Zaher. All rights reserved.
 //
 
-import RxSwift
 import RxRelay
+import RxSwift
 
 extension SharedSequenceConvertibleType where SharingStrategy == SignalSharingStrategy {
     /**
@@ -19,11 +19,11 @@ extension SharedSequenceConvertibleType where SharingStrategy == SignalSharingSt
      - returns: Disposable object that can be used to unsubscribe the observer from the subject.
      */
     public func emit<Observer: ObserverType>(to observers: Observer...) -> Disposable where Observer.Element == Element {
-        return self.asSharedSequence()
-                   .asObservable()
-                   .subscribe { event in
-                    observers.forEach { $0.on(event) }
-                   }
+        return asSharedSequence()
+            .asObservable()
+            .subscribe { event in
+                observers.forEach { $0.on(event) }
+            }
     }
 
     /**
@@ -35,12 +35,12 @@ extension SharedSequenceConvertibleType where SharingStrategy == SignalSharingSt
      - returns: Disposable object that can be used to unsubscribe the observer from the subject.
      */
     public func emit<Observer: ObserverType>(to observers: Observer...) -> Disposable where Observer.Element == Element? {
-        return self.asSharedSequence()
-                   .asObservable()
-                   .map { $0 as Element? }
-                   .subscribe { event in
-                       observers.forEach { $0.on(event) }
-                   }
+        return asSharedSequence()
+            .asObservable()
+            .map { $0 as Element? }
+            .subscribe { event in
+                observers.forEach { $0.on(event) }
+            }
     }
 
     /**
@@ -49,22 +49,22 @@ extension SharedSequenceConvertibleType where SharingStrategy == SignalSharingSt
      - returns: Disposable object that can be used to unsubscribe the observer from the relay.
      */
     public func emit(to relays: BehaviorRelay<Element>...) -> Disposable {
-        return self.emit(onNext: { e in
+        return emit(onNext: { e in
             relays.forEach { $0.accept(e) }
         })
     }
-    
+
     /**
      Creates new subscription and sends elements to `BehaviorRelay`.
      - parameter to: Target relays for sequence elements.
      - returns: Disposable object that can be used to unsubscribe the observer from the relay.
      */
     public func emit(to relays: BehaviorRelay<Element?>...) -> Disposable {
-        return self.emit(onNext: { e in
+        return emit(onNext: { e in
             relays.forEach { $0.accept(e) }
         })
     }
-    
+
     /**
      Creates new subscription and sends elements to `PublishRelay`.
 
@@ -72,7 +72,7 @@ extension SharedSequenceConvertibleType where SharingStrategy == SignalSharingSt
      - returns: Disposable object that can be used to unsubscribe the observer from the relay.
      */
     public func emit(to relays: PublishRelay<Element>...) -> Disposable {
-        return self.emit(onNext: { e in
+        return emit(onNext: { e in
             relays.forEach { $0.accept(e) }
         })
     }
@@ -84,7 +84,7 @@ extension SharedSequenceConvertibleType where SharingStrategy == SignalSharingSt
      - returns: Disposable object that can be used to unsubscribe the observer from the relay.
      */
     public func emit(to relays: PublishRelay<Element?>...) -> Disposable {
-        return self.emit(onNext: { e in
+        return emit(onNext: { e in
             relays.forEach { $0.accept(e) }
         })
     }
@@ -96,7 +96,7 @@ extension SharedSequenceConvertibleType where SharingStrategy == SignalSharingSt
      - returns: Disposable object that can be used to unsubscribe the observer from the relay.
      */
     public func emit(to relays: ReplayRelay<Element>...) -> Disposable {
-        return self.emit(onNext: { e in
+        return emit(onNext: { e in
             relays.forEach { $0.accept(e) }
         })
     }
@@ -108,11 +108,11 @@ extension SharedSequenceConvertibleType where SharingStrategy == SignalSharingSt
      - returns: Disposable object that can be used to unsubscribe the observer from the relay.
      */
     public func emit(to relays: ReplayRelay<Element?>...) -> Disposable {
-        return self.emit(onNext: { e in
+        return emit(onNext: { e in
             relays.forEach { $0.accept(e) }
         })
     }
-    
+
     /**
      Subscribes an element handler, a completion handler and disposed handler to an observable sequence.
 
@@ -121,7 +121,7 @@ extension SharedSequenceConvertibleType where SharingStrategy == SignalSharingSt
      Error callback is not exposed because `Signal` can't error out.
 
      - Note: If `object` can't be retained, none of the other closures will be invoked.
-     
+
      - parameter object: The object to provide an unretained reference on.
      - parameter onNext: Action to invoke for each element in the observable sequence.
      - parameter onCompleted: Action to invoke upon graceful termination of the observable sequence.
@@ -136,7 +136,7 @@ extension SharedSequenceConvertibleType where SharingStrategy == SignalSharingSt
         onCompleted: ((Object) -> Void)? = nil,
         onDisposed: ((Object) -> Void)? = nil
     ) -> Disposable {
-        self.asObservable().subscribe(
+        asObservable().subscribe(
             with: object,
             onNext: onNext,
             onCompleted: onCompleted,
@@ -148,7 +148,7 @@ extension SharedSequenceConvertibleType where SharingStrategy == SignalSharingSt
      Subscribes an element handler, a completion handler and disposed handler to an observable sequence.
 
      Error callback is not exposed because `Signal` can't error out.
-     
+
      - parameter onNext: Action to invoke for each element in the observable sequence.
      - parameter onCompleted: Action to invoke upon graceful termination of the observable sequence.
      gracefully completed, errored, or if the generation is canceled by disposing subscription)
@@ -161,17 +161,17 @@ extension SharedSequenceConvertibleType where SharingStrategy == SignalSharingSt
         onCompleted: (() -> Void)? = nil,
         onDisposed: (() -> Void)? = nil
     ) -> Disposable {
-        self.asObservable().subscribe(onNext: onNext, onCompleted: onCompleted, onDisposed: onDisposed)
+        asObservable().subscribe(onNext: onNext, onCompleted: onCompleted, onDisposed: onDisposed)
     }
 
     /**
-    Subscribes to this `Signal` with a no-op.
-    This method can be only called from `MainThread`.
+     Subscribes to this `Signal` with a no-op.
+     This method can be only called from `MainThread`.
 
-    - note: This is an alias of `emit(onNext: nil, onCompleted: nil, onDisposed: nil)` used to fix an ambiguity bug in Swift: https://bugs.swift.org/browse/SR-13657
+     - note: This is an alias of `emit(onNext: nil, onCompleted: nil, onDisposed: nil)` used to fix an ambiguity bug in Swift: https://bugs.swift.org/browse/SR-13657
 
-    - returns: Subscription object used to unsubscribe from the observable sequence.
-    */
+     - returns: Subscription object used to unsubscribe from the observable sequence.
+     */
     public func emit() -> Disposable {
         emit(onNext: nil, onCompleted: nil, onDisposed: nil)
     }

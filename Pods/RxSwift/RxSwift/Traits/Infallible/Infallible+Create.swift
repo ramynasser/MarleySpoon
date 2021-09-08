@@ -31,7 +31,7 @@ extension Infallible {
         let source = Observable<Element>.create { observer in
             subscribe { event in
                 switch event {
-                case .next(let element):
+                case let .next(element):
                     observer.onNext(element)
                 case .completed:
                     observer.onCompleted()

@@ -12,10 +12,8 @@ import Foundation
 /// This stateful type safely highlights links that have been resolved to entries, resolved to assets,
 /// or remain unresolved.
 public enum Link: Codable {
-
     /// The system properties which describe the link.
     public struct Sys: Codable {
-
         /// The identifier of the linked resource
         public let id: String
 
@@ -49,63 +47,63 @@ public enum Link: Codable {
     /// The unique identifier of the linked asset or entry.
     public var id: String {
         switch self {
-        case .asset(let asset):                     return asset.id
-        case .entry(let entry):                     return entry.id
-        case .entryDecodable(let entryDecodable):   return entryDecodable.id
-        case .unresolved(let sys):                  return sys.id
+        case let .asset(asset): return asset.id
+        case let .entry(entry): return entry.id
+        case let .entryDecodable(entryDecodable): return entryDecodable.id
+        case let .unresolved(sys): return sys.id
         }
     }
 
     /// The linked Entry, if it exists.
     public var entry: Entry? {
         switch self {
-        case .entry(let entry):     return entry
-        default:                    return nil
+        case let .entry(entry): return entry
+        default: return nil
         }
     }
 
     /// The linked Asset, if it exists.
     public var asset: Asset? {
         switch self {
-        case .asset(let asset):     return asset
-        default:                    return nil
+        case let .asset(asset): return asset
+        default: return nil
         }
     }
 
     /// The linked EntryDecodable, if it exists.
     public var entryDecodable: EntryDecodable? {
         switch self {
-        case .entryDecodable(let entryDecodable):   return entryDecodable
-        default:                                    return nil
+        case let .entryDecodable(entryDecodable): return entryDecodable
+        default: return nil
         }
     }
 
     /// The system properties which describe the link.
     public var sys: Link.Sys {
         switch self {
-        case .unresolved(let sys):
+        case let .unresolved(sys):
             return sys
         default:
             fatalError("Should not try to access sys properties on links that are resolved.")
         }
     }
-    
+
     // Because sys can not be accessed in already resolved link even through it is for storing
     // we attempt extracting sys from entity that it was resolved to.
     // Otherwise we fall back to trying to use sys directly
-    
+
     internal var persistableSys: Link.Sys {
         switch self {
-        case .entry(let entry):
+        case let .entry(entry):
             if let contentType = entry.sys.contentTypeId {
-                 return Link.Sys(id: entry.sys.id,
-                                  linkType: entry.sys.type,
-                                  type: contentType)
+                return Link.Sys(id: entry.sys.id,
+                                linkType: entry.sys.type,
+                                type: contentType)
             }
         default:
             break
         }
-        
+
         return sys
     }
 
@@ -129,7 +127,7 @@ public enum Link: Codable {
      */
     internal func resolve(against includedEntries: [String: Entry], and includedAssets: [String: Asset]) -> Link {
         switch self {
-        case .unresolved(let sys):
+        case let .unresolved(sys):
             switch sys.linkType {
             case "Entry":
                 if let entry = includedEntries[sys.id] {
@@ -163,9 +161,9 @@ public enum Link: Codable {
     }
 
     public init(from decoder: Decoder) throws {
-        let container   = try decoder.container(keyedBy: CodingKeys.self)
-        let sys         = try container.decode(Link.Sys.self, forKey: .sys)
-        self            = .unresolved(sys)
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        let sys = try container.decode(Link.Sys.self, forKey: .sys)
+        self = .unresolved(sys)
     }
 
     public func encode(to encoder: Encoder) throws {

@@ -5,13 +5,13 @@
 //  Created by Ramy Nasser on 07/09/2021.
 //
 
+import Combine
 import Foundation
 import SwiftUI
-import Combine
 
 class ImageLoader: ObservableObject {
     var didChange = PassthroughSubject<Data, Never>()
-    
+
     var data = Data() {
         didSet {
             didChange.send(data)
@@ -20,7 +20,7 @@ class ImageLoader: ObservableObject {
 
     init(urlString: String) {
         guard let url = URL(string: urlString) else { return }
-        let task = URLSession.shared.dataTask(with: url) { data, response, error in
+        let task = URLSession.shared.dataTask(with: url) { data, _, _ in
             guard let data = data else { return }
             DispatchQueue.main.async {
                 self.data = data

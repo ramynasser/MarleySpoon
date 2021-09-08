@@ -8,7 +8,6 @@
 import Foundation
 
 internal final class JSONDecoderBuilder {
-
     internal var dateDecodingStrategy: JSONDecoder.DateDecodingStrategy = .custom(Date.variableISO8601Strategy)
     internal var localizationContext: LocalizationContext?
     internal var timeZone: TimeZone?

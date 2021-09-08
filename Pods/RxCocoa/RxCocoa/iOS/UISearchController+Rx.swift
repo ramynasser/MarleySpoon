@@ -7,10 +7,10 @@
 //
 
 #if os(iOS)
-    
+
     import RxSwift
     import UIKit
-    
+
     extension Reactive where Base: UISearchController {
         /// Reactive wrapper for `delegate`.
         /// For more information take a look at `DelegateProxyType` protocol documentation.
@@ -21,7 +21,7 @@
         /// Reactive wrapper for `delegate` message.
         public var didDismiss: Observable<Void> {
             return delegate
-                .methodInvoked( #selector(UISearchControllerDelegate.didDismissSearchController(_:)))
+                .methodInvoked(#selector(UISearchControllerDelegate.didDismissSearchController(_:)))
                 .map { _ in }
         }
 
@@ -35,7 +35,7 @@
         /// Reactive wrapper for `delegate` message.
         public var present: Observable<Void> {
             return delegate
-                .methodInvoked( #selector(UISearchControllerDelegate.presentSearchController(_:)))
+                .methodInvoked(#selector(UISearchControllerDelegate.presentSearchController(_:)))
                 .map { _ in }
         }
 
@@ -45,14 +45,13 @@
                 .methodInvoked(#selector(UISearchControllerDelegate.willDismissSearchController(_:)))
                 .map { _ in }
         }
-        
+
         /// Reactive wrapper for `delegate` message.
         public var willPresent: Observable<Void> {
             return delegate
-                .methodInvoked( #selector(UISearchControllerDelegate.willPresentSearchController(_:)))
+                .methodInvoked(#selector(UISearchControllerDelegate.willPresentSearchController(_:)))
                 .map { _ in }
         }
-        
     }
-    
+
 #endif

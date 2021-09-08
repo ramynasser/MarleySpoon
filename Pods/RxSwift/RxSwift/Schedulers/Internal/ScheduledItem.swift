@@ -10,26 +10,26 @@ struct ScheduledItem<T>
     : ScheduledItemType
     , InvocableType {
     typealias Action = (T) -> Disposable
-    
+
     private let action: Action
     private let state: T
 
     private let disposable = SingleAssignmentDisposable()
 
     var isDisposed: Bool {
-        self.disposable.isDisposed
+        disposable.isDisposed
     }
-    
+
     init(action: @escaping Action, state: T) {
         self.action = action
         self.state = state
     }
-    
+
     func invoke() {
-         self.disposable.setDisposable(self.action(self.state))
+        disposable.setDisposable(action(state))
     }
-    
+
     func dispose() {
-        self.disposable.dispose()
+        disposable.dispose()
     }
 }

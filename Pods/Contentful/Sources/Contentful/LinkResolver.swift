@@ -8,7 +8,6 @@
 import Foundation
 
 internal class LinkResolver {
-
     private enum Constant {
         static let linksArrayPrefix = "linksArrayPrefix"
     }
@@ -62,7 +61,7 @@ internal class LinkResolver {
         }
 
         if callbacks.isEmpty == true {
-            self.dataCache = DataCache()
+            dataCache = DataCache()
         }
     }
 }

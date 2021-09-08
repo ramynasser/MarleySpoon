@@ -33,8 +33,8 @@ extension ObservableType {
     }
 }
 
-final private class ObservableOptionalScheduledSink<Observer: ObserverType>: Sink<Observer> {
-    typealias Element = Observer.Element 
+private final class ObservableOptionalScheduledSink<Observer: ObserverType>: Sink<Observer> {
+    typealias Element = Observer.Element
     typealias Parent = ObservableOptionalScheduled<Element>
 
     private let parent: Parent
@@ -45,7 +45,7 @@ final private class ObservableOptionalScheduledSink<Observer: ObserverType>: Sin
     }
 
     func run() -> Disposable {
-        return self.parent.scheduler.schedule(self.parent.optional) { (optional: Element?) -> Disposable in
+        return parent.scheduler.schedule(parent.optional) { (optional: Element?) -> Disposable in
             if let next = optional {
                 self.forwardOn(.next(next))
                 return self.parent.scheduler.schedule(()) { _ in
@@ -62,7 +62,7 @@ final private class ObservableOptionalScheduledSink<Observer: ObserverType>: Sin
     }
 }
 
-final private class ObservableOptionalScheduled<Element>: Producer<Element> {
+private final class ObservableOptionalScheduled<Element>: Producer<Element> {
     fileprivate let optional: Element?
     fileprivate let scheduler: ImmediateSchedulerType
 
@@ -78,13 +78,13 @@ final private class ObservableOptionalScheduled<Element>: Producer<Element> {
     }
 }
 
-final private class ObservableOptional<Element>: Producer<Element> {
+private final class ObservableOptional<Element>: Producer<Element> {
     private let optional: Element?
-    
+
     init(optional: Element?) {
         self.optional = optional
     }
-    
+
     override func subscribe<Observer: ObserverType>(_ observer: Observer) -> Disposable where Observer.Element == Element {
         if let element = self.optional {
             observer.on(.next(element))

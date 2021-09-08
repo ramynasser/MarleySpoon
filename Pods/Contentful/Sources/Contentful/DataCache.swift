@@ -9,15 +9,14 @@
 import Foundation
 
 internal class DataCache {
-
     private static let cacheKeyDelimiter = "_"
 
     internal static func cacheKey(for link: Link) -> String {
         let linkType: String
         switch link {
-        case .asset:                    linkType = "asset"
-        case .entry, .entryDecodable:   linkType = "entry"
-        case .unresolved(let sys):      linkType = sys.linkType
+        case .asset: linkType = "asset"
+        case .entry, .entryDecodable: linkType = "entry"
+        case let .unresolved(sys): linkType = sys.linkType
         }
 
         let cacheKey = DataCache.cacheKey(id: link.id, linkType: linkType)
@@ -54,10 +53,10 @@ internal class DataCache {
     }
 
     internal func item(for identifier: String) -> Any? {
-        var target: Any? = self.asset(for: identifier)
+        var target: Any? = asset(for: identifier)
 
         if target == nil {
-            target = self.entry(for: identifier)
+            target = entry(for: identifier)
         }
 
         return target

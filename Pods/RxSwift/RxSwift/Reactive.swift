@@ -38,7 +38,7 @@ public struct Reactive<Base> {
     /// Automatically synthesized binder for a key path between the reactive
     /// base and one of its properties
     public subscript<Property>(dynamicMember keyPath: ReferenceWritableKeyPath<Base, Property>) -> Binder<Property> where Base: AnyObject {
-        Binder(self.base) { base, value in
+        Binder(base) { base, value in
             base[keyPath: keyPath] = value
         }
     }
@@ -62,7 +62,7 @@ extension ReactiveCompatible {
         get { Reactive<Self>.self }
         // this enables using Reactive to "mutate" base type
         // swiftlint:disable:next unused_setter_value
-        set { }
+        set {}
     }
 
     /// Reactive extensions.
@@ -70,11 +70,11 @@ extension ReactiveCompatible {
         get { Reactive(self) }
         // this enables using Reactive to "mutate" base object
         // swiftlint:disable:next unused_setter_value
-        set { }
+        set {}
     }
 }
 
 import Foundation
 
 /// Extend NSObject with `rx` proxy.
-extension NSObject: ReactiveCompatible { }
+extension NSObject: ReactiveCompatible {}

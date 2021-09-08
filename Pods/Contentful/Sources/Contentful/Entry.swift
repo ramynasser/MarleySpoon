@@ -33,7 +33,6 @@ public extension EndpointAccessible where Self: EntryDecodable {
 
 /// An `Entry` represents a typed collection of content, structured via fields, in Contentful.
 public class Entry: LocalizableResource {
-
     /// A convenience subscript operator to access the fields dictionary directly and return a String?
     public subscript(key: String) -> String? {
         return fields[key] as? String
@@ -58,14 +57,14 @@ public class Entry: LocalizableResource {
 
      Links can remain unresolved for at least the following reasons:
      - User narrowed the query to a certain type (e.g. `Entry`) when using the '/sync'
-       endpoint, such that the linked content is not in `includedEntries` or `includedAssets`.
+     endpoint, such that the linked content is not in `includedEntries` or `includedAssets`.
      - User set the `Query`'s `includesLevel` too low, such that the linked content is
-       not in `includedEntries` or `includedAssets`.
+     not in `includedEntries` or `includedAssets`.
 
      - parameters:
-         - includedEntries: `Entry` candidates that `self` _could_ link to.
-         - includedAssets: `Asset` candidates that `self` _could_ link to.
-    */
+     - includedEntries: `Entry` candidates that `self` _could_ link to.
+     - includedAssets: `Asset` candidates that `self` _could_ link to.
+     */
     internal func resolveLinks(against includedEntries: [String: Entry], and includedAssets: [String: Asset]) {
         var localizableFields = [FieldName: [LocaleCode: Any]]()
 
@@ -76,7 +75,6 @@ public class Entry: LocalizableResource {
             // Iterate all field values in this localizableField and resolve
             // those that are of type Link.
             for (localeCode, fieldValueForLocaleCode) in localizableFieldMap {
-
                 switch fieldValueForLocaleCode {
                 case let oneToOneLink as Link where oneToOneLink.isResolved == false:
                     let resolvedLink = oneToOneLink.resolve(against: includedEntries, and: includedAssets)
@@ -104,12 +102,10 @@ public class Entry: LocalizableResource {
 }
 
 extension Entry: EndpointAccessible {
-
     public static let endpoint = Endpoint.entries
 }
 
 extension Entry: ResourceQueryable {
-
     /// The QueryType for an EntryQuery is Query.
     public typealias QueryType = Query
 }

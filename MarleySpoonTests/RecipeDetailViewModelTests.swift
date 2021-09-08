@@ -5,11 +5,10 @@
 //  Created by Ramy Nasser on 09/09/2021.
 //
 
-import XCTest
 @testable import MarleySpoon
+import XCTest
 
 class RecipeDetailViewModelTests: XCTestCase {
-
     var recipeDetailViewModel: RecipeDetailViewModel!
     override func setUpWithError() throws {
         let tag1 = Tag(name: "tagName1")
@@ -18,13 +17,12 @@ class RecipeDetailViewModelTests: XCTestCase {
 
         let chef = Chef(name: "Ramy")
         let recipe = Recipe(title: "title",
-                             description: "description",
-                             calories:123,
-                             chef: chef,
-                             tags: [tag1,tag2,tag3])
+                            description: "description",
+                            calories: 123,
+                            chef: chef,
+                            tags: [tag1, tag2, tag3])
 
         recipeDetailViewModel = RecipeDetailViewModel(recipe: recipe)
-
     }
 
     override func tearDownWithError() throws {
@@ -34,7 +32,7 @@ class RecipeDetailViewModelTests: XCTestCase {
     func test_recipeDetailViewModel_binding() {
         XCTAssertEqual(recipeDetailViewModel.chefName, "Ramy")
         XCTAssertEqual(recipeDetailViewModel.recipeTags.count, 3)
-        XCTAssertEqual(recipeDetailViewModel.recipeTags, ["tagName1","tagName2","tagName3"])
+        XCTAssertEqual(recipeDetailViewModel.recipeTags, ["tagName1", "tagName2", "tagName3"])
         XCTAssertEqual(recipeDetailViewModel.title, "title")
         XCTAssertEqual(recipeDetailViewModel.description, "description")
     }

@@ -9,20 +9,19 @@
 import Foundation
 
 /// Utility method to add two dictionaries of the same time.
-public func +=<K, V> (left: [K: V], right: [K: V]) -> [K: V] {
+public func += <K, V>(left: [K: V], right: [K: V]) -> [K: V] {
     var result = left
     right.forEach { key, value in result[key] = value }
     return result
 }
 
 /// Utility method to add two dictionaries of the same time.
-public func +<K, V> (left: [K: V], right: [K: V]) -> [K: V] {
+public func + <K, V>(left: [K: V], right: [K: V]) -> [K: V] {
     return left += right
 }
 
 /// Convenience methods for reading from dictionaries without conditional casts.
 public extension Dictionary where Key: ExpressibleByStringLiteral {
-
     /// Extract the String at the specified fieldName.
     ///
     /// - Parameter key: The name of the field to extract the `String` from.
@@ -104,7 +103,6 @@ public extension Dictionary where Key: ExpressibleByStringLiteral {
     func bool(at key: Key) -> Bool? {
         return self[key] as? Bool
     }
-
 
     /// Extracts the `Contentful.Location` at the specified fieldName.
     ///
