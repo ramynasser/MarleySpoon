@@ -19,17 +19,15 @@ public class RecipeListViewModel: ObservableObject {
         
      self.service = service
         
-     service.result.subscribe(onNext: { [weak self] result in
+        service.result.asDriver().asObservable().subscribe(onNext: { [weak self] result in
         guard let self = self else {
             return
         }
         switch result {
         case .success(let recipes):
-            DispatchQueue.main.async {
-                self.recipes = recipes
-            }
+            self.recipes = recipes
         case .failure(let error):
-          self.error = error.localizedDescription
+            self.error = error.localizedDescription
         }
       }).disposed(by: disposeBag)
         

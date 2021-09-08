@@ -3,12 +3,20 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 51;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
-		5C78125CE0351ADD46A4967B /* Pods_MarleySpoonTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B9C0C794F603B80398A7762 /* Pods_MarleySpoonTests.framework */; };
+		5C78125CE0351ADD46A4967B /* Pods_MarleySpoonTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B9C0C794F603B80398A7762 /* Pods_MarleySpoonTests.framework */; platformFilter = ios; };
 		BBCEF0E4B525E6086B2A772F /* Pods_MarleySpoon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 940ED1E890C756E313647E3B /* Pods_MarleySpoon.framework */; };
+		CF0403F326E94D6F007CF378 /* RecipeService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF3DF2F526E8DDF000F31504 /* RecipeService.swift */; };
+		CF0403FE26E94E1C007CF378 /* Recipe.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF3AE74B26E800030077253F /* Recipe.swift */; };
+		CF0403FF26E94E1C007CF378 /* Chef.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF3DF2E926E8D3B100F31504 /* Chef.swift */; };
+		CF04040026E94E1C007CF378 /* Tag.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF3DF2EF26E8D40800F31504 /* Tag.swift */; };
+		CF04040126E94E1C007CF378 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF3DF30D26E8E1D100F31504 /* Constants.swift */; };
+		CF04040226E94E1C007CF378 /* RecipeListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF3DF32426E8E26C00F31504 /* RecipeListViewModel.swift */; };
+		CF04041826E95302007CF378 /* RecipeServiceStub.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF04040526E94EB4007CF378 /* RecipeServiceStub.swift */; };
+		CF04041E26E95358007CF378 /* RecipeDetailViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF04041D26E95358007CF378 /* RecipeDetailViewModelTests.swift */; };
 		CF3AE69D26E7F2860077253F /* MarleySpoonApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF3AE67426E7F2850077253F /* MarleySpoonApp.swift */; };
 		CF3AE69F26E7F2860077253F /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF3AE67526E7F2850077253F /* ContentView.swift */; };
 		CF3AE6A126E7F2860077253F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CF3AE67626E7F2860077253F /* Assets.xcassets */; };
@@ -25,11 +33,7 @@
 		CF3DF30E26E8E1D100F31504 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF3DF30D26E8E1D100F31504 /* Constants.swift */; };
 		CF3DF32526E8E26C00F31504 /* RecipeListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF3DF32426E8E26C00F31504 /* RecipeListViewModel.swift */; };
 		CF3DF32B26E8E76D00F31504 /* RecipeDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF3DF32A26E8E76D00F31504 /* RecipeDetailViewModel.swift */; };
-		CF3DF39B26E9028800F31504 /* RecipeViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF3DF33026E8F76F00F31504 /* RecipeViewModelTests.swift */; };
-		CF3DF3CB26E9092400F31504 /* MockedRecipeService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF3DF33626E8F7DB00F31504 /* MockedRecipeService.swift */; };
-		CF3DF3DE26E90B9D00F31504 /* Recipe.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF3AE74B26E800030077253F /* Recipe.swift */; };
-		CF3DF3DF26E90B9D00F31504 /* Chef.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF3DF2E926E8D3B100F31504 /* Chef.swift */; };
-		CF3DF3E026E90B9D00F31504 /* Tag.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF3DF2EF26E8D40800F31504 /* Tag.swift */; };
+		CF3DF39B26E9028800F31504 /* RecipeViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF3DF33026E8F76F00F31504 /* RecipeViewModelTests.swift */; platformFilter = ios; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,6 +57,8 @@
 		AC8B96719720A40D610FF8AE /* Pods-MarleySpoonTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MarleySpoonTests.debug.xcconfig"; path = "Target Support Files/Pods-MarleySpoonTests/Pods-MarleySpoonTests.debug.xcconfig"; sourceTree = "<group>"; };
 		BA7965B06BEFA36A1E9F5499 /* Pods-Tests iOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Tests iOS.debug.xcconfig"; path = "Target Support Files/Pods-Tests iOS/Pods-Tests iOS.debug.xcconfig"; sourceTree = "<group>"; };
 		BB7867913FD0E39645415929 /* Pods-MarleySpoonTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MarleySpoonTests.release.xcconfig"; path = "Target Support Files/Pods-MarleySpoonTests/Pods-MarleySpoonTests.release.xcconfig"; sourceTree = "<group>"; };
+		CF04040526E94EB4007CF378 /* RecipeServiceStub.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeServiceStub.swift; sourceTree = "<group>"; };
+		CF04041D26E95358007CF378 /* RecipeDetailViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeDetailViewModelTests.swift; sourceTree = "<group>"; };
 		CF3AE67426E7F2850077253F /* MarleySpoonApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarleySpoonApp.swift; sourceTree = "<group>"; };
 		CF3AE67526E7F2850077253F /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		CF3AE67626E7F2860077253F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -74,7 +80,11 @@
 		CF3DF32426E8E26C00F31504 /* RecipeListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeListViewModel.swift; sourceTree = "<group>"; };
 		CF3DF32A26E8E76D00F31504 /* RecipeDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeDetailViewModel.swift; sourceTree = "<group>"; };
 		CF3DF33026E8F76F00F31504 /* RecipeViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeViewModelTests.swift; sourceTree = "<group>"; };
-		CF3DF33626E8F7DB00F31504 /* MockedRecipeService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockedRecipeService.swift; sourceTree = "<group>"; };
+		CFE9EBB926E93CCB00BFA5A0 /* Contentful.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Contentful.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		CFE9EBBB26E93CCB00BFA5A0 /* RxCocoa.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = RxCocoa.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		CFE9EBBD26E93CCB00BFA5A0 /* RxRelay.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = RxRelay.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		CFE9EBBF26E93CCB00BFA5A0 /* RxSwift.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = RxSwift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		CFE9EBC926E93DA200BFA5A0 /* Contentful.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Contentful.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -100,6 +110,11 @@
 		216EB8BDD075E2738ED4CF41 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				CFE9EBC926E93DA200BFA5A0 /* Contentful.framework */,
+				CFE9EBB926E93CCB00BFA5A0 /* Contentful.framework */,
+				CFE9EBBB26E93CCB00BFA5A0 /* RxCocoa.framework */,
+				CFE9EBBD26E93CCB00BFA5A0 /* RxRelay.framework */,
+				CFE9EBBF26E93CCB00BFA5A0 /* RxSwift.framework */,
 				940ED1E890C756E313647E3B /* Pods_MarleySpoon.framework */,
 				5B9C0C794F603B80398A7762 /* Pods_MarleySpoonTests.framework */,
 			);
@@ -160,9 +175,10 @@
 		CF3AE68E26E7F2860077253F /* MarleySpoonTests */ = {
 			isa = PBXGroup;
 			children = (
+				CF04040526E94EB4007CF378 /* RecipeServiceStub.swift */,
 				CF3AE69126E7F2860077253F /* Info.plist */,
 				CF3DF33026E8F76F00F31504 /* RecipeViewModelTests.swift */,
-				CF3DF33626E8F7DB00F31504 /* MockedRecipeService.swift */,
+				CF04041D26E95358007CF378 /* RecipeDetailViewModelTests.swift */,
 			);
 			path = MarleySpoonTests;
 			sourceTree = "<group>";
@@ -444,10 +460,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CF3DF3DE26E90B9D00F31504 /* Recipe.swift in Sources */,
-				CF3DF3DF26E90B9D00F31504 /* Chef.swift in Sources */,
-				CF3DF3E026E90B9D00F31504 /* Tag.swift in Sources */,
-				CF3DF3CB26E9092400F31504 /* MockedRecipeService.swift in Sources */,
+				CF0403FE26E94E1C007CF378 /* Recipe.swift in Sources */,
+				CF04041826E95302007CF378 /* RecipeServiceStub.swift in Sources */,
+				CF0403FF26E94E1C007CF378 /* Chef.swift in Sources */,
+				CF04040026E94E1C007CF378 /* Tag.swift in Sources */,
+				CF04040126E94E1C007CF378 /* Constants.swift in Sources */,
+				CF04040226E94E1C007CF378 /* RecipeListViewModel.swift in Sources */,
+				CF04041E26E95358007CF378 /* RecipeDetailViewModelTests.swift in Sources */,
+				CF0403F326E94D6F007CF378 /* RecipeService.swift in Sources */,
 				CF3DF39B26E9028800F31504 /* RecipeViewModelTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -457,6 +477,7 @@
 /* Begin PBXTargetDependency section */
 		CF3AE68D26E7F2860077253F /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
+			platformFilter = ios;
 			target = CF3AE67A26E7F2860077253F /* MarleySpoon */;
 			targetProxy = CF3AE68C26E7F2860077253F /* PBXContainerItemProxy */;
 		};

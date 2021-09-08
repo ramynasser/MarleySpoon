@@ -12,8 +12,6 @@ class RecipeViewModelTests: XCTestCase {
     var serviceStub: RecipeServiceStub!
 
     override func setUpWithError() throws {
-        serviceStub = RecipeServiceStub()
-        recipesViewModel = RecipeListViewModel(service: serviceStub)
         // Put setup code here. This method is called before the invocation of each test method in the class.
     }
 
@@ -22,8 +20,8 @@ class RecipeViewModelTests: XCTestCase {
     }
 
     func test_fetchRecipes_success_response() {
-      let tag1 = Tag(name: "fatfree")
-      let chef1 = Chef(name: "Steve Cook")
+      let tag1 = Tag(name: "tag1")
+      let chef1 = Chef(name: "chef1")
       let recipe1 = Recipe(title: "Awesome Recipe",
                            description: "Awesome Recipe's Description",
                            calories:789,
@@ -46,7 +44,7 @@ class RecipeViewModelTests: XCTestCase {
                            chef: chef3,
                            tags: [tag1, tag3])
 
-      serviceStub.stubbedRecipes = [recipe1,recipe2,recipe3]
+      serviceStub = RecipeServiceStub(recipes: [recipe1,recipe2,recipe3])
       recipesViewModel = RecipeListViewModel(service: serviceStub)
       recipesViewModel.fetchRecipes()
       XCTAssertEqual(serviceStub.fetchRecipeCallCount, 1)
@@ -56,7 +54,8 @@ class RecipeViewModelTests: XCTestCase {
 
     func test_fetchRecipes_failure_response() {
       let expectedMessage = "Some example error message"
-      serviceStub.stubbedErrorString = expectedMessage
+      serviceStub = RecipeServiceStub(errorMessage: expectedMessage)
+      recipesViewModel = RecipeListViewModel(service: serviceStub)
       recipesViewModel.fetchRecipes()
       XCTAssertEqual(serviceStub.fetchRecipeCallCount, 1)
       XCTAssertEqual(expectedMessage, recipesViewModel.error)
