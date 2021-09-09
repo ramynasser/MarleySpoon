@@ -34,6 +34,23 @@ class RecipeDetailViewModelTests: XCTestCase {
         XCTAssertEqual(recipeDetailViewModel.recipeTags.count, 3)
         XCTAssertEqual(recipeDetailViewModel.recipeTags, ["tagName1", "tagName2", "tagName3"])
         XCTAssertEqual(recipeDetailViewModel.title, "title")
+        XCTAssertEqual(recipeDetailViewModel.calories, 123)
         XCTAssertEqual(recipeDetailViewModel.description, "description")
+    }
+    
+    func test_recipeDetailViewModel_binding_empty() {
+        let chef = Chef(name: "")
+        let recipe = Recipe(title: nil,
+                            description: nil,
+                            calories: nil,
+                            chef: chef,
+                            tags: [])
+
+        recipeDetailViewModel = RecipeDetailViewModel(recipe: recipe)
+        XCTAssertEqual(recipeDetailViewModel.chefName, "")
+        XCTAssertEqual(recipeDetailViewModel.recipeTags.count, 0)
+        XCTAssertEqual(recipeDetailViewModel.recipeTags, [])
+        XCTAssertEqual(recipeDetailViewModel.title, "")
+        XCTAssertEqual(recipeDetailViewModel.description, "")
     }
 }

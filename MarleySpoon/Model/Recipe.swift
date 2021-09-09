@@ -24,7 +24,7 @@ public final class Recipe: EntryDecodable, FieldKeysQueryable, Identifiable {
     public var photo: Asset?
     public var tags: [Tag]?
 
-    public init(title: String, description: String, calories: Int, chef: Chef, tags: [Tag]) {
+    public init(title: String?, description: String?, calories: Int?, chef: Chef?, tags: [Tag]) {
         self.title = title
         self.description = description
         self.calories = calories
